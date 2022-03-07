@@ -1,0 +1,21 @@
+spring:
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
+#    listener:
+#      simple:
+#        #手动确认消息(MQ默认是自动的)
+#        acknowledge-mode: manual
+#        #拒绝消息是否重回队列
+#        default-requeue-rejected: true
+
+#spring.rabbitmq.host	RabbitMQ的主机地址
+#spring.rabbitmq.port	RabbitMQ的端口号
+#  端口 15672 网页管理
+#  端口 5672 AMQP端口
+#  然后访问http://localhost:15672即可
+
+
+

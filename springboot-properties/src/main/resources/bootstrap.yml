@@ -1,0 +1,39 @@
+server:
+  port: 7777
+
+
+
+#  补充知识：SpringBoot不读取bootstrap.yml/properties文件
+#  今天写创建了一个SpringBoot项目，配置文件从其他项目拷贝了一份bootstrap.yml
+#  之前一直用的application.yml
+#  心想：application.yml 优先级没有bootstrap.yml 高，bootstrap配置文件肯定没问题
+#  项目一跑来，发现配置文件里面的内容没读取到。
+#  之后通过各种查资料，才明白了application.yml 和bootstrap.yml 的区别，不仅仅是优先级的问题。
+#
+#  先说我的问题是什么原因吧：
+#
+#  SpringBoot 项目中如果没有依赖 spring-cloud-context 的话，是不会读取bootstrap.properties 文件
+#
+#  也就是说
+#
+#  bootstrap.yml配置是SpringCloud项目才会用到的。
+#
+#  如果你的项目仅仅是一个SpringBoot项目，只会识别application.yml配置文件。
+#
+#  由于SpringCloud是基于SpringBoot构建的，所有SpringCloud项目两种文件都会识别，这个时候才有优先级的说法，SpringCloud项目是会优先读取bootstrap配置在读取application配置。
+#
+#  引用Spring官网的一句话：
+#  A Spring Cloud application operates by creating a “bootstrap” context, which is a parent context for the main application.
+#  Out of the box it is responsible for loading configuration properties from the external sources,
+#  and also decrypting properties in the local external configuration files.
+#
+#  SpringCloud 应用是基于 一个 “bootstrap”的上下文运行的。
+#
+#  也就说明了 bootstrap这个配置是SpringCloud 应用才会用的。
+#
+#  而且这个配置是不能被覆盖的，也就是优先级比application配置中的高。
+#
+#  什么配置在application配置？什么配置在bootstrap里面配置？
+#
+#  1、当使用 Spring Cloud Config Server 的时候，spring.application.name 和 spring.cloud.config.server.git.uri应该在 bootstrap.yml 里面指定
+#  2、一些加密解密的配置也应该配置在bootstrap里面

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<all-sql>
+	<sql name="query_cmm_day_stat">
+		<![CDATA[
+		select count(1) as _count from t_promotion_install_record where save_type=1 and date_created >= ? and date_created < ? 
+		]]>
+	</sql>
+
+	<sql name="insert_cmm_day_stat">
+		<![CDATA[
+		insert into dw_cmm_day(calculate_date,count,date_created) values(?,?,?)
+		]]>
+	</sql>
+
+	<sql name="query_cmm_user_stat">
+		<![CDATA[
+		select channel,count(1) from t_promotion_install_record where save_type =1 and date_created < ? group by channel order by count(1) desc;
+		]]>
+	</sql>
+
+	<sql name="insert_cmm_user_stat">
+		<![CDATA[
+		insert into dw_cmm_day(channel,calculate_date,count,date_created) values(?,?,?,?)
+		]]>
+	</sql>
+</all-sql>

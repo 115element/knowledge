@@ -1,0 +1,70 @@
+###配置sleuth生效
+logging:
+  level:
+    root: INFO
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.springframework.cloud.sleuth: DEBUG
+
+spring:
+  application:
+    name: hello-spring-cloud-zuul
+
+  #服务监控客户端配置
+  boot:
+    admin:
+      client:
+        url: http://localhost:8084
+  #因为该服务需要被追踪，所以要开启追踪
+  zipkin:
+    base-url: http://localhost:9411
+    enabled: true
+    sender:
+      type: web
+#    sleuth:
+#      sampler:
+#        #抽样率，默认是0.1(10%),现在取100%，只为测试方便，生产环境勿设100%
+#        probability: 1.0
+
+server:
+  port: 8769
+
+eureka:
+  client:
+    serverUrl:
+      defaultZone: http://localhost:8761/eureka/  #服务的发现注册中心地址
+
+zuul:
+  routes:  # api网关聚合两个服务
+    api-a:
+      path: /api/a/**  # **表示全目录匹配
+      serviceId: hello-spring-cloud-web-admin-feign # 服务的名字
+    api-b:
+      path: /api/b/**
+      serviceId: hello-spring-cloud-web-admin-ribbon
+  #限流配置---------------------------------------------------------
+  ratelimit:
+    key-prefix: springcloud #按粒度拆分的临时变量key的前缀
+    enabled: true  #启用开关
+    #repository: IN_MEMORY #key存储类型，默认是IN_MEMORY本地内存，必须大些
+    behind-proxy: true  #表示代理之后
+    default-policy:
+      limit: 2  #在一个单位时间内的请求数量
+      quota: 1  #在一个单位时间内的请求时间限制
+      refresh-interval: 3 #单位时间窗口
+      type:
+        - user   #可指定用户粒度
+        - origin #可指定客户端地址粒度
+        - url    #可指定 url 粒度
+    #我们增加了policies配置，含义是我们对 client-a 服务进行特殊限流配置，10秒内请求数量不得大于 5 次，这 5 次请求总时长不能大于 5秒，其他服务对限流策略还是按照 上面默认的，不冲突。
+    policies:
+      client-a:
+      limit: 5
+      quota: 5
+      efresh-interval: 10
+
+
+#  zuul 底层使用的是 ribbon 的负载组件, ribbon 可以从 eureka 获取服务列表,
+#  所以想要自定义负载, 得从 ribbon 入手, 查看并搜索 loadBalance 相关的类,
+#  可以看到 AbstractLoadBalancerRule 这个类, 查看类树, 可以看到顶级接口为 IRule
+
+## zuul可以自定义负载策略，需要继承ZoneAvoidanceRule,重写choose方法

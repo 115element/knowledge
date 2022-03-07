@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: es
+  thymeleaf:  #关闭thymeleaf缓存
+    cache: false
+  #配置ES
+  data:
+    elasticsearch:
+      cluster-name: cluster
+      cluster-nodes: ip:9200  #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode（9200端口是http查询使用的。9300集群使用。这里使用9300.）
+
+server:
+  port: 33333
+

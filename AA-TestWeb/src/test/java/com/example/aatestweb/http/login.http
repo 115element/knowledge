@@ -1,0 +1,48 @@
+###
+POST http://localhost:9010/login/buyer-email-login.html
+Content-Type: application/x-www-form-urlencoded
+
+email=buyer_email&password=test-buyer-pass
+
+###
+POST http://localhost:9010/login/buyer-name-login.html
+Content-Type: application/x-www-form-urlencoded
+
+username=buyer_name&password=test-buyer-pass
+
+###
+POST http://localhost:9010/login/buyer-mobile-login.html
+Content-Type: application/x-www-form-urlencoded
+
+mobile=buyer_mobile&smscode=test-buyer-pass
+
+###
+POST http://localhost:9010/login/buyer-weixin-login.html
+Content-Type: application/x-www-form-urlencoded
+
+open_id=buyer_weixin&sessen_key=test-buyer-pass&access_token_weixin=WX-1234567-3456789
+
+###
+POST http://localhost:9010/login/clerk-name-login.html
+Content-Type: application/x-www-form-urlencoded
+
+username=test-clerk&password=test-clerk-pass
+
+###
+POST http://localhost:9010/login/admin-name-login.html
+Content-Type: application/x-www-form-urlencoded
+
+username=test-admin&password=test-admin-pass
+
+###
+GET http://localhost:9010/role-user.html?access_token=WG-VH27VH-PKY3J-QE88WGRGNRV9XX
+
+###
+GET http://localhost:9010/menu-write.html?access_token=WG-ZEVLEG-GFQZK-K4SP6UPUGPX29M
+
+###
+GET http://localhost:9010/menu-write.html
+Authorization: Bearer WG-ZEVLEG-GFQZK-K4SP6UPUGPX29M
+
+###
+

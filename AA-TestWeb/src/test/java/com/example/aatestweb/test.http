@@ -1,0 +1,15 @@
+###
+POST http://127.0.0.1:9030/login/mini-test
+
+###
+
+### phone login
+POST http://127.0.0.1:9030/login/phone
+Content-Type: application/json
+
+{
+  "phone":"15669487281",
+  "captcha":"000000"
+}
+
+###

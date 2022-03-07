@@ -1,0 +1,49 @@
+1.0.20
+xml2Object:ignoreUnknownElements to prevent xml2object error(AbstractReflectionConverter$UnknownFieldException)
+1.0.19
+bug:
+	1. fix SameKeyThreadManager when result is null
+
+1.0.18
+new feature:
+	1. add TTLConcurrentHashMap
+
+1.0.17
+new feature:
+	1. and XMLUtil base on vtd-xml
+
+1.0.16
+update:
+	1. 升级了SameKeyThreadManager类声明方式
+new feature:	
+	1. Util类新增了对随机MAC地址的辨认
+
+1.0.15
+new feature:
+	1. HTTPFluentClient
+1.0.14
+new feature:
+	1. add ZlibUtil, GzipUtil
+1.0.13
+new feature:
+	1. 新增NotNullAttributeMapper， 用于spring-mvc的jsonview object deserialization custom
+	2. 新增hibernate的ImprovedNamingStrategy 当hibernate 版本大于5.0
+	31. 新增文件观察者，监控文件变化
+update:
+	1. jackson2 update to 2.6.3
+	2. spring framework update to 4.2.5
+	3. hibernate update to 5.1.0
+=============================================================================
+1.0.6
+	升级httpclient
+	删除ObjectTree类
+=============================================================================
+1.0.2
+new feature:
+	1. 新增动态properties动态加载
+	
+task:
+	1. JDK级别升级到1。7
+
+
+

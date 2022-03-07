@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+	<appender name="logfile"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender -->
+		<File>../logs/chang-cs.log</File>
+		<encoder>
+			<pattern>%d: %p %C:%M:%L - %m%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<maxIndex>20</maxIndex>
+			<FileNamePattern>../logs/chang-cs.log.%i</FileNamePattern>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>50MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d: %p %C:%M:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+	<logger name="org.apache" level="WARN" />
+	<logger name="org.springframework" level="WARN" />
+	<logger name="org.hibernate" level="WARN" />
+	<logger name="com.mchange" level="WARN" />
+	<logger name="org.quartz" level="WARN" />
+	<root level="DEBUG">
+		<appender-ref ref="logfile" />
+		<appender-ref ref="stdout" />
+	</root>
+</configuration>

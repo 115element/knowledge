@@ -1,0 +1,13 @@
+###
+POST http://localhost:9010/report/store-list.json
+
+###
+POST http://localhost:9010/report/store-simple/2800001.json
+
+###
+POST http://localhost:9010/report/store-simple/2100001.json
+
+###
+POST http://localhost:9010/report/store-simple/2100002.json?date=2019-12-28
+
+
