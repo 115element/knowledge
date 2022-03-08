@@ -50,6 +50,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.3.RELEASE</version>
                 <!--
                 指向程序的入口，以前执行spring程序，直接run就行了，但现在是jar文件
                 jar怎么运行？  java -jar jar的名字

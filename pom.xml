@@ -25,9 +25,7 @@
         <module>aliyun-vue</module>
         <module>springmvc-annotation-college</module>
         <module>AA-Test</module>
-        <module>diy-spring-boot-starter-autoconfig</module>
         <module>docker-college</module>
-        <module>guava-college</module>
         <module>httpclient-college</module>
         <module>java8-college</module>
         <module>java9-11-12-13-14</module>
@@ -45,6 +43,8 @@
         <module>seata-college</module>
         <module>zipkin-college</module>
         <module>log-mdc-college</module>
+        <module>college-spring-boot-starter</module>
+        <module>college-spring-boot-starter/use-spring-boot-starter</module>
     </modules>
 
 
@@ -117,11 +117,7 @@
             <artifactId>commons-text</artifactId>
             <version>1.8</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>5.2.7.RELEASE</version>
-        </dependency>
+
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
@@ -150,6 +146,8 @@
     <!-- dependencyManagement里只是声明依赖，并不实现引入，因此子项目需要显示的声明需要用的依赖，-->
     <!-- 如果不在子项目中声明依赖，是不会从父项目中继承下来的；只有在子项目中写了该依赖项(指定groupId和artifactId)，并且没有指定具体版本，-->
     <!-- 才会从父项目中继承该项，并且version和scope都读取自父pom;另外如果子项目中指定了版本号，那么会使用子项目中指定的jar版本。-->
+    <!-- dependencyManagement只是一个管理jar包版本的，不会去下载这个jar包，它的作用只是声明这个jar包的版本号。-->
+    <!-- 其中import只能在<dependencyManagement> 中使用，表示从其它的pom文件中导入dependency配置。import是为了避免maven单继承的局限性，而引入的。-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -191,7 +189,7 @@
     </build>
 
 
-    <!-- Maven远程仓库设置，非必要，可以删除-->
+    <!-- Maven私服仓库设置，非必要，可以删除-->
     <!-- 在POM中配置远程仓库-->
     <!-- 前面我们看到超级POM配置了ID为central的远程仓库，我们可以在POM中配置其它的远程仓库。-->
     <!-- 这样做的原因有很多，比如你有一个局域网的远程仓库，使用该仓库能大大提高下载速度，-->
@@ -205,11 +203,14 @@
             <releases>
                 <enabled>true</enabled>
             </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
 
-    <!--Maven远程插件库设置，非必要，可以删除-->
+    <!-- Maven私服插件库设置，非必要，可以删除-->
     <!-- 在POM中配置远程插件仓库-->
     <!-- 前面我们看到超级POM配置了ID为central的远程仓库，我们可以在POM中配置其它的远程仓库。-->
     <!-- 这样做的原因有很多，比如你有一个局域网的远程仓库，使用该仓库能大大提高下载速度，-->
@@ -220,14 +221,32 @@
             <id>public</id>
             <name>aliyun nexus</name>
             <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <!--是否下载发行版-->
             <releases>
                 <enabled>true</enabled>
             </releases>
+            <!--是否下载快照版-->
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
 
+
+    <!--将项目打包上传到nexus私服-->
+    <distributionManagement>
+        <!--正式版仓库发布地址-->
+        <repository>
+            <id>nexus-release</id>
+            <name>Nexus Release Repository</name>
+            <url>http://192.168.236.129:8081/repository/maven-releases/</url>
+        </repository>
+        <!--快照版仓库发布地址-->
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://192.168.236.129:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 </project>

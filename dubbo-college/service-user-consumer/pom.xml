@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.6.RELEASE</version>
+        <version>2.0.3.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -81,11 +81,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-
-                <!--如果不配置 用mvn启动找不到入口-->
-<!--                <configuration>-->
-<!--                    <mainClass>com.funtl.hello.dubbo.service.user.consumer.HelloDubboServiceUserConsumerApplication</mainClass>-->
-<!--                </configuration>-->
+                <version>2.0.3.RELEASE</version>
             </plugin>
         </plugins>
     </build>

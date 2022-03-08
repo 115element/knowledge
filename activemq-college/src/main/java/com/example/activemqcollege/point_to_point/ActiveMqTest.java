@@ -1,7 +1,7 @@
 package com.example.activemqcollege.point_to_point;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.jms.*;
 import java.io.IOException;

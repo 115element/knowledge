@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import com.example.code.lambda_new.Employee;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 public class TestLambda {

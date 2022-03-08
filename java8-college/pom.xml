@@ -11,19 +11,7 @@
 
     <artifactId>java8-college</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
-
     <dependencies>
-
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
-            <scope>compile</scope>
-        </dependency>
 
         <!--Vavr是Java 8+的函数库，提供不可变数据类型和功能控制结构。-->
         <dependency>
@@ -37,7 +25,6 @@
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
             <version>7.3.1</version>
-            <scope>compile</scope>
         </dependency>
 
         <!--javassist字节码增删改查框架-->
@@ -45,7 +32,6 @@
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>3.24.1-GA</version>
-            <scope>compile</scope>
         </dependency>
 
 
@@ -56,10 +42,18 @@
             <artifactId>quasar-core</artifactId>
             <version>0.7.6</version>
         </dependency>
+
+
+        <!-- Graph相关工具类-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>RELEASE</version>
+            <version>4.13.2</version>
             <scope>compile</scope>
         </dependency>
 
@@ -74,7 +68,9 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>

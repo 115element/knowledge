@@ -1,6 +1,6 @@
 package com.example.apigatewaycollege.util;
 
-import com.example.apigateway.enumeration.SignCode;
+import com.example.apigatewaycollege.enumeration.SignCode;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +67,7 @@ public class Signature {
     }
 
     /**
-     * @param secretkey 秘钥
+     * @param accessKeySecret 秘钥
      * @param nonce     随机数
      * @param timestamp 时间戳
      * @return 返回待签名的字符串

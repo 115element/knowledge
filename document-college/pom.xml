@@ -44,15 +44,8 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-            <version>1.18.20</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <version>2.5.3</version>
             <scope>test</scope>
         </dependency>
 
@@ -64,7 +57,6 @@
             <artifactId>easypoi-spring-boot-starter</artifactId>
             <version>4.4.0</version>
         </dependency>
-
 
         <!-- java生成PDF -->
         <dependency>
@@ -117,6 +109,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.3</version>
                 <configuration>
                     <excludes>
                         <exclude>

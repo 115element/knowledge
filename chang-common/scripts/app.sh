@@ -47,7 +47,7 @@ case "$1" in
 	
 		echo $! > "$PID_FILE" 
         fi
-        if [ "$?"="0" ]
+        if [ "$?" = "0" ]
         then
               echo " is running..."
         fi
