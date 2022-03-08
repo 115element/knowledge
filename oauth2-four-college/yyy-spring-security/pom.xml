@@ -63,11 +63,7 @@
             <version>5.3.3.RELEASE</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.18</version>
-        </dependency>
+
     </dependencies>
 
     <build>
