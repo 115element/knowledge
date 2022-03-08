@@ -4,7 +4,7 @@ import com.example.bean.User;
 import com.example.injection.Category;
 import com.example.injection.UserService;
 import com.example.scope.Customer;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

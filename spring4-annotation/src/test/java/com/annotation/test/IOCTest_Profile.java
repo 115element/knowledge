@@ -2,7 +2,7 @@ package com.annotation.test;
 
 import com.annotation.bean.Yellow;
 import com.annotation.config.MainConfigOfProfile;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.sql.DataSource;

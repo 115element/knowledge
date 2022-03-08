@@ -2,7 +2,7 @@ package com.annotation.test;
 
 import com.annotation.aop.MathCalculator;
 import com.annotation.config.MainConfigOfAOP;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class IOCTest_Aop {

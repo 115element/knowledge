@@ -6,7 +6,7 @@ import com.example.mybatis.UserDao;
 import com.example.mybatis.UserService;
 import com.example.yml.Account;
 import com.example.yml.YmlAutoConfiguration;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

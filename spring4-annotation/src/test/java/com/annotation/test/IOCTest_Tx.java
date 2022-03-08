@@ -10,7 +10,7 @@ import com.annotation.tx.require.UserService3;
 import com.annotation.tx.require.UserService4;
 import com.annotation.tx.require_new.UserService5;
 import com.annotation.tx.require_new.UserService6;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class IOCTest_Tx {

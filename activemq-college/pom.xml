@@ -6,7 +6,6 @@
         <artifactId>knowledge</artifactId>
         <groupId>org.example</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath/>
     </parent>
 
     <dependencyManagement>

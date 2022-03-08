@@ -170,6 +170,7 @@
                 <plugin>
                     <groupId>org.apche.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.3.2</version>
                     <executions>
                         <execution>
                             <phase>prepare-package</phase>

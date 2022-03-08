@@ -6,7 +6,7 @@ import com.annotation.bean.Color;
 import com.annotation.bean.Green;
 import com.annotation.config.MainConfigOfAutowired;
 import com.annotation.service.BookService;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class IOCTest_Autowired {

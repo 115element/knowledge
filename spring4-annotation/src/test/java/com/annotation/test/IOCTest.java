@@ -5,7 +5,7 @@ import com.annotation.bean.Person;
 import com.annotation.config.MainConfig;
 import com.annotation.config.MainConfig2;
 import com.annotation.config.MainConfig3;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 
