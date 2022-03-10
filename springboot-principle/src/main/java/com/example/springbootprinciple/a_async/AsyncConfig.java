@@ -1,4 +1,4 @@
-package com.example.aatestweb.controller.a_async;
+package com.example.springbootprinciple.a_async;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,9 +7,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 
 import java.lang.reflect.Method;
-import java.util.concurrent.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
-//TODO 我们可以自定义配置@Async使用的线程池
+//TODO 我们可以自定义配置@Async框架使用的线程池
 
 public class AsyncConfig implements AsyncConfigurer {
 
