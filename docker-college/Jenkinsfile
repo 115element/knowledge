@@ -1,0 +1,55 @@
+pipeline {
+  agent {
+    node {
+      label 'master'
+      customWorkspace "/opt/build/${JOB_NAME}"
+    }
+  }
+  stages {
+    stage('Build') {
+      steps {
+        sh '''
+mvn clean package'''
+echo "build number: ${currentBuild.number}"
+echo "build currentResult: ${currentBuild.currentResult}"
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh '''
+        scp -r target/*.jar ${ClusterNode}:${DeploySpace}/sbin/
+        ssh root@${ClusterNode} "sh ${ServiceScript} restart dev"
+        '''
+      }
+    }
+    stage('Verfiy') {
+      steps {
+      sh '''
+        sleep 20s
+        ssh root@${ClusterNode} "sh ${ServiceScript} status"
+        '''
+      }
+    }
+}
+    post {
+        failure {
+            echo "send mail to ${EMAIL}"
+            mail  to: "${EMAIL}",
+            subject: "${JOB_NAME}项目部署失败",
+            body: "${JOB_NAME}，(${BUILD_NUMBER})构建失败，请打开Jenkins查看详情：${JENKINS_URL}/blue/organizations/jenkins/${JOB_NAME}/detail/${JOB_NAME}/${BUILD_NUMBER}/pipeline"
+            }
+        success {
+            echo "send mail to ${EMAIL}"
+            mail to: "${EMAIL}",
+            subject: "${JOB_NAME}项目部署成功",
+            body: "更新记录：\n${GIT_MESSAGE}\n构建详情：${JENKINS_URL}/blue/organizations/jenkins/${JOB_NAME}/detail/${JOB_NAME}/${BUILD_NUMBER}/pipeline"
+     }
+  }
+  environment {
+    ServiceScript = "${DeploySpace}/bin/${JOB_NAME}"
+    GIT_MESSAGE = """${sh(
+            script: 'git log --no-walk --format=format:"The author of %h was %an, %ai%nThe title was >>%s<<%n"', 
+            returnStdout: true
+            )}"""
+  }
+}
