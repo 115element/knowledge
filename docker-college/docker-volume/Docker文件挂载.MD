@@ -75,3 +75,14 @@ docker cp nginx:/etc/nginx  H:\volumes\nginx
 复制宿主机文件到容器中:
 docker cp H:\volumes\nginx  nginx:/etc/nginx 
 ```
+
+
+#复制容器的文件夹，到宿主机D盘下。
+```shell
+#拷贝文件
+C:\Users\Alex> docker cp e3b09c55e343:/usr/share/elasticsearch/config/elasticsearch.yml D:\
+#拷贝文件夹
+C:\Users\Alex> docker cp e3b09c55e343:/usr/share/elasticsearch/config D:\
+C:\Users\Alex> docker cp e3b09c55e343:/usr/share/elasticsearch/data D:\
+C:\Users\Alex> docker cp e3b09c55e343:/usr/share/elasticsearch/logs D:\
+```

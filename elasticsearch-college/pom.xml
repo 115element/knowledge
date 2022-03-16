@@ -13,7 +13,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-parent</artifactId>
-                <version>2.5.3</version>
+                <version>2.5.4</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -33,15 +33,33 @@
     <dependencies>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <groupId>org.elasticsearch</groupId>
+            <artifactId>elasticsearch</artifactId>
+            <version>7.12.1</version>
         </dependency>
-
-        <!--elasticsearch依赖-->
+        <!-- Java High Level REST Client -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-elasticsearch</artifactId>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>7.12.1</version>
         </dependency>
+        <!--
+          elasticsearch版本依赖
+          SpringBoot默认是有ElasticSearch的Starter，
+          但是它依赖的ES客户端的版本比较低，跟不上ES的更新速度，
+          所以我们在SpringBoot项目中要指定ES的最新版本，如下：
+          <properties>
+              <elasticsearch.version>7.6.1</elasticsearch.version>
+          </properties>
+
+          首先，我们要引入ES的高等级的客户端RestHighLevelClient，
+          由于我们在配置文件中配置了ES集群的地址，
+          所以SpringBoot自动为我们创建了RestHighLevelClient的实例，
+          我们直接自动注入就可以了。然后在添加索引数据的方法中，我们先把索引对应的实体创建好，并设置对应的值。
+        -->
+
+
+
         <dependency>
             <groupId>io.searchbox</groupId>
             <artifactId>jest</artifactId>
@@ -51,13 +69,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <!--SpringBoot热部署,改变代码后需要手动Recompile改动的类，才可以-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
         </dependency>
 
         <dependency>
@@ -125,7 +136,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.5.3</version>
+                <version>2.5.4</version>
             </plugin>
         </plugins>
     </build>

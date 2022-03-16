@@ -16,6 +16,7 @@ docker run \
     -v /etc/localtime:/etc/localtime:ro \
     --name mysql8 \
     --restart=always \
+    --privileged=true
     -d \ 
     mysql:8.0.13     
 ```

@@ -1,34 +1,34 @@
 package com.example.elasticsearchcollege.controller;
 
 
-import com.example.elasticsearchcollege.dao.UserDocumentDao;
-import com.example.elasticsearchcollege.document.UserDocument;
-import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
-import org.springframework.util.Assert;
+import com.example.elasticsearchcollege.service.EsService;
+import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
+import java.io.IOException;
+
 
 @RestController
 public class EsController {
 
-    @Resource
-    private ElasticsearchRestTemplate elasticsearchRestTemplate;
-    @Resource
-    private UserDocumentDao userDocumentDao;
+    @Autowired
+    EsService esService;
 
+    @SneakyThrows
     @GetMapping(value = "create")
-    public void createIndex(){
-        elasticsearchRestTemplate.indexOps(UserDocument.class).create();
-        UserDocument user = new UserDocument();
-        user.setId("123456");
-        user.setUserName("test");
-        UserDocument saveUser = userDocumentDao.save(user);
-        Assert.notNull(saveUser);
-        System.out.println(userDocumentDao.findById(user.getId()));
-        elasticsearchRestTemplate.indexOps(UserDocument.class).delete();
+    public String createIndex() throws IOException {
+        esService.insert();
+        return "ok";
+    }
 
+
+    @SneakyThrows
+    @GetMapping(value = "search")
+    public String searchIndex() throws IOException {
+        esService.searchIndex();
+        return "ok";
     }
 
 
