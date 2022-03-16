@@ -5,8 +5,9 @@ docker search mongo
 
 拉取镜像
 ```shell
-docker pull mongo:latest
+docker pull mongo:4.4.5
 ```
+如果不指定版本号，默认是latest
 
 运行容器
 "./data/configdb:/data/configdb"
@@ -37,9 +38,10 @@ db.createUser({ user: 'root', pwd: 'root', roles: [ { role: "userAdminAnyDatabas
 exit
 ```
 
-4.以上操作记录：
+4.以上操作记录,为MongoDB添加管理员用户.
 ```text
 docker exec -it 51a5b5e05fe4 mongo admin
+
 MongoDB shell version v4.0.10
 connecting to: mongodb://127.0.0.1:27017/admin?gssapiServiceName=mongodb
 Implicit session: session { "id" : UUID("04ebc64f-df58-4931-8a68-4824ed032dd4") }

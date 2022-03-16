@@ -1,7 +1,7 @@
 package com.example.mongodbcollege.dao;
 
 
-import com.example.mongodbcollege.entity.MongoTest;
+import com.example.mongodbcollege.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @Component
-public class MongoDao {
+public class UserAccessUtil {
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -26,7 +26,7 @@ public class MongoDao {
     /**
      * 创建对象
      */
-    public void saveTest(MongoTest test) {
+    public void saveTest(User test) {
         mongoTemplate.save(test);
     }
 
@@ -36,17 +36,17 @@ public class MongoDao {
      * @param name
      * @return
      */
-    public MongoTest findTestByName(String name) {
+    public User findTestByName(String name) {
         Query query = new Query(Criteria.where("name").is(name));
-        MongoTest mgt = mongoTemplate.findOne(query, MongoTest.class);
+        User mgt = mongoTemplate.findOne(query, User.class);
         return mgt;
     }
 
-    public void updateTest(MongoTest test) {
+    public void updateTest(User test) {
         Query query = new Query(Criteria.where("id").is(test.getId()));
         Update update = new Update().set("age", test.getAge()).set("name", test.getName());
         //更新查询返回结果集的第一条
-        mongoTemplate.updateFirst(query, update, MongoTest.class);
+        mongoTemplate.updateFirst(query, update, User.class);
         //更新查询返回结果集的所有
         //mongoTemplate.updateMulti(query,update,MongoTest.class);
     }
@@ -58,7 +58,7 @@ public class MongoDao {
      */
     public void deleteTestById(Integer id) {
         Query query = new Query(Criteria.where("id").is(id));
-        mongoTemplate.remove(query, MongoTest.class);
+        mongoTemplate.remove(query, User.class);
     }
 
 
@@ -67,8 +67,8 @@ public class MongoDao {
      *
      * @return
      */
-    public List<MongoTest> findAll() {
-        List<MongoTest> all = mongoTemplate.findAll(MongoTest.class);
+    public List<User> findAll() {
+        List<User> all = mongoTemplate.findAll(User.class);
         return all;
     }
 
@@ -93,7 +93,7 @@ public class MongoDao {
         Aggregation aggregation = Aggregation.newAggregation(operations);
 
         //MongoDB中聚合(aggregate)主要用于处理数据(诸如统计平均值,求和等)，并返回计算后的数据结果。有点类似sql语句中的 count(*)。
-        AggregationResults<MongoTest> aggregate = mongoTemplate.aggregate(aggregation, "mongoTest", MongoTest.class);
+        AggregationResults<User> aggregate = mongoTemplate.aggregate(aggregation, "mongoTest", User.class);
         Integer ageSum = aggregate.getUniqueMappedResult().getAge();
         return ageSum; //77
     }
@@ -114,7 +114,7 @@ public class MongoDao {
                 // 第刘步：重新挑选字段
                 Aggregation.project("userId", "distance")
         );
-        AggregationResults<MongoTest> results = mongoTemplate.aggregate(agg, "collectionName", MongoTest.class);
-        List<MongoTest> mappedResults = results.getMappedResults();
+        AggregationResults<User> results = mongoTemplate.aggregate(agg, "collectionName", User.class);
+        List<User> mappedResults = results.getMappedResults();
     }
 }

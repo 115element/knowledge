@@ -1,7 +1,7 @@
 package com.example.mongodbcollege;
 
-import com.example.mongodbcollege.dao.MongoDao;
-import com.example.mongodbcollege.entity.MongoTest;
+import com.example.mongodbcollege.dao.UserAccessUtil;
+import com.example.mongodbcollege.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,41 +12,41 @@ import java.util.List;
 class MongodbCollegeApplicationTests {
 
     @Autowired
-    private MongoDao mtdao;
+    private UserAccessUtil userAccessUtil;
 
 
     @Test
     public void saveTest() throws Exception {
-        MongoTest mgtest = new MongoTest();
-        mgtest.setId(111);
+        User mgtest = new User();
+        mgtest.setId(111L);
         mgtest.setAge(33);
         mgtest.setName("ceshi");
-        mtdao.saveTest(mgtest);
+        userAccessUtil.saveTest(mgtest);
     }
 
     @Test
     public void findTestByName() {
-        MongoTest mgtest = mtdao.findTestByName("ceshi");
+        User mgtest = userAccessUtil.findTestByName("ceshi");
         System.out.println("mgtest is " + mgtest);
     }
 
     @Test
     public void updateTest() {
-        MongoTest mgtest = new MongoTest();
-        mgtest.setId(11);
+        User mgtest = new User();
+        mgtest.setId(11L);
         mgtest.setAge(44);
         mgtest.setName("ceshi2");
-        mtdao.updateTest(mgtest);
+        userAccessUtil.updateTest(mgtest);
     }
 
     @Test
     public void deleteTestById() {
-        mtdao.deleteTestById(11);
+        userAccessUtil.deleteTestById(11);
     }
 
     @Test
     public void findAll(){
-        List<MongoTest> all = mtdao.findAll();
+        List<User> all = userAccessUtil.findAll();
         System.out.println(all);
     }
 
@@ -54,7 +54,7 @@ class MongodbCollegeApplicationTests {
     //聚合操作
     @Test
     public void aggregationTest(){
-        int aggregation = mtdao.aggregation();
+        int aggregation = userAccessUtil.aggregation();
         System.out.println(aggregation);
     }
 }

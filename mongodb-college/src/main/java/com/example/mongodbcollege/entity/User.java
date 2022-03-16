@@ -4,16 +4,17 @@ package com.example.mongodbcollege.entity;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "mongoTest")
-public class MongoTest {
-    private Integer id;
+public class User {
+
+    private Long id;
     private Integer age;
     private String name;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
