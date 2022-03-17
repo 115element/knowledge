@@ -1,16 +1,17 @@
-查询mongo镜像
+#1.查询mongo镜像
 ```shell
 docker search mongo
 ```
 
-拉取镜像
+
+#2.拉取镜像
 ```shell
 docker pull mongo:4.4.5
 ```
 如果不指定版本号，默认是latest
 
-运行容器
-"./data/configdb:/data/configdb"
+
+#3.运行容器 (--auth 参数表示开启mongoDB登录认证)
 ```shell
 docker run --name mongodb -p 27017:27017 -v /d/volumes/mongo/data/configdb:/data/configdb -v /d/volumes/mongo/data:/data/db --restart=always --privileged=true -d mongo:latest --auth 
 ```
@@ -24,14 +25,14 @@ privileged启动的容器，可以看到很多host上的设备，并且可以执
 
 
 #为MongoDB添加管理员用户
-1.以管理员身份进入MongoDB
+1.进入mongoDB
 ```shell
 docker exec -it 镜像id mongo admin
 ```
 2.创建一个 admin 管理员账号：
 ```shell
 use admin
-db.createUser({ user: 'root', pwd: 'root', roles: [ { role: "userAdminAnyDatabase", db: "admin" } ] });
+db.createUser({ user: 'root', pwd: 'root', roles: [ { role: "userAdminAnyDatabase", db: "admin" }, { role: "readWriteAnyDatabase", db: "admin" },{ role: "dbAdminAnyDatabase", db: "admin" }});
 ```
 3.退出
 ```shell
@@ -69,12 +70,12 @@ bye
 
 
 #创建普通用户、密码和数据库
-1.以 admin 用户身份进入mongo
+1.进入mongo
 ```shell
 docker exec -it 51a5b5e05fe4 mongo admin
 ```
 
-2.对admin进行身份认证： PS:就是上一步创建的管理员账号密码
+2.进行身份认证： PS:就是上一步创建的管理员账号密码 (如果不验证，则没有权限查看数据)
 ```shell
 db.auth("root","root");
 ```
@@ -115,7 +116,7 @@ bye
 
 #登录 APP 数据库
 
-1.以admin用户身份进入mongo ：
+1.进入mongoDB；
 ```shell
 docker exec -it 51a5b5e05fe4  mongo admin
 ```
@@ -143,7 +144,7 @@ connecting to: mongodb://127.0.0.1:27017/admin?gssapiServiceName=mongodb
 Implicit session: session { "id" : UUID("48474e4e-b226-401c-ab00-62b1bae80def") }
 MongoDB server version: 4.0.10
 > db.auth("alex","123456");
-1
+1   返回1代表认证成功
 > use app
 switched to db app
 > db.test.save({name:"zhangsan"});

@@ -1,6 +1,7 @@
 package com.example.mongodbcollege.dao;
 
 
+import com.example.mongodbcollege.entity.Father;
 import com.example.mongodbcollege.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -28,6 +29,14 @@ public class UserAccessUtil {
      */
     public void saveTest(User test) {
         mongoTemplate.save(test);
+    }
+
+
+    /**
+     * 创建对象
+     */
+    public void saveFather(Father father) {
+        mongoTemplate.save(father);
     }
 
     /**

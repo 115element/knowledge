@@ -1,6 +1,8 @@
 package com.example.mongodbcollege;
 
 import com.example.mongodbcollege.dao.UserAccessUtil;
+import com.example.mongodbcollege.entity.Father;
+import com.example.mongodbcollege.entity.Son;
 import com.example.mongodbcollege.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +17,29 @@ class MongodbCollegeApplicationTests {
     private UserAccessUtil userAccessUtil;
 
 
+    //TODO 展示MongoDB的特性，非关系型数据库特性。
+    @Test
+    public void saveFather() {
+        Father father = new Father();
+        father.setId(100L);
+        father.setName("巴巴");
+
+        Son son = new Son();
+        son.setId(99L);
+        son.setName("儿子");
+        father.setSon(son);
+
+        String[] colors = new String[]{"red", "yellow", "pink"};
+        father.setColors(colors);
+
+        userAccessUtil.saveFather(father);
+    }
+
+
     @Test
     public void saveTest() throws Exception {
         User mgtest = new User();
-        mgtest.setId(111L);
+        mgtest.setId(112L);
         mgtest.setAge(33);
         mgtest.setName("ceshi");
         userAccessUtil.saveTest(mgtest);
@@ -45,7 +66,7 @@ class MongodbCollegeApplicationTests {
     }
 
     @Test
-    public void findAll(){
+    public void findAll() {
         List<User> all = userAccessUtil.findAll();
         System.out.println(all);
     }
@@ -53,7 +74,7 @@ class MongodbCollegeApplicationTests {
 
     //聚合操作
     @Test
-    public void aggregationTest(){
+    public void aggregationTest() {
         int aggregation = userAccessUtil.aggregation();
         System.out.println(aggregation);
     }
