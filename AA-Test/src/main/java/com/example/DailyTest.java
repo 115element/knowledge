@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.circular_dependcy.A;
 import com.google.common.base.Splitter;
 import com.google.common.graph.Graph;
+import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.file.*;
@@ -19,10 +21,27 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class DailyTest {
+
+    public void ty() {
+        //获取该类所有成员变量名字和值
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            String name = field.getName();
+            try {
+                Object o = field.get(this);
+                //log.info("{}:{}", name, o);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+        //log.info("配置文件内容输出完毕.");
+    }
 
 
     @Test
