@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,18 @@ public class AController {
     private Map<String,String> map;
     @Value("#{'${data.list}'.split(',')}")
     private List<String> list;
+    @Value("#{${data.map.test}}")
+    private Map<String, String> mapTest;
+    @Value("#{${data.map.special}}")
+    private Map<Integer, Integer> mapSpecial1;
 
+
+    @PostConstruct
+    public void initialize(){
+        System.out.println(map);
+        System.out.println(mapTest);
+        System.out.println(mapSpecial1);
+    }
 
     @GetMapping("ttt")
     public int ss(){
