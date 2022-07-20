@@ -5,6 +5,15 @@
 SFTP本身没有单独的守护进程，它必须使用sshd守护进程（端口号默认是22）来完成相应的连接操作。
 由于这种传输方式使用了加密/解密技术，文件传送相对来说是很安全的，但是是有代价的，它的传输效率比FTP要低得多。
 
+
+#sftp登录格式如下:
+```shell
+sftp apple@127.0.0.1
+sftp apple@127.0.0.1:app.txt      ###意思是获取/home/apple/app.txt文件
+sftp apple@127.0.0.1:/home/apple  ###意思是sftp连接至127.0.0.1，并将远端目录切换至/home/apple目录
+```
+
+
 ```shell script
 help 查看sftp支持哪些命令
 ```
